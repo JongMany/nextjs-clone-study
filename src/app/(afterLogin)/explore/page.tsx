@@ -2,9 +2,9 @@ import React from 'react';
 
 export default function Page() {
   return (
-    <div>
-      
-    </div>
+    <main>
+      검색 페이지
+    </main>
   );
 }
 
