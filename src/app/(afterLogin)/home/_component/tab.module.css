@@ -43,7 +43,7 @@
   position: relative;
 }
 .homeTab a:hover {
-  background-color: rgba(15,20,25, 0.1);
+  background-color: rgba(15, 20, 25, 0.1);
 }
 
 .tabIndicator {

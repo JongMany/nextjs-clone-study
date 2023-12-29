@@ -1,10 +1,6 @@
 import React from 'react';
+import Home from '@/app/(afterLogin)/home/page';
 
 export default function Page() {
-  return (
-    <div>
-      트윗 페이지
-    </div>
-  );
+  return <Home />;
 }
-
