@@ -9,9 +9,11 @@ export default function LogoutButton() {
 
   const router = useRouter();
   const onLogout = () => {
-    signOut({ redirect: false }).then(() => {
-      router.replace('/');
-    });
+    signOut({ redirect: false })
+      .then(() => {
+        router.replace('/');
+      })
+      .catch(console.error);
   };
 
   // 내정보가 없으면 로그아웃 버튼 안 보여주기
