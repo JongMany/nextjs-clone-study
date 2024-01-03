@@ -1,14 +1,25 @@
-"use client"
+'use client';
 
+import { useSession } from 'next-auth/react';
 import style from './followRecommend.module.css';
+import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 export default function FollowRecommend() {
-  const onFollow = () => {};
+  const { data } = useSession();
+  console.log(data);
+  
+  const router = useRouter();
+  const onFollow = () => {
+    if (!data?.user) {
+      router.replace('/');
+    }
+  };
 
   const user = {
     id: 'elonmusk',
     nickname: 'Elon Musk',
-    image: '/yRsRRjGO.jpg'
+    image: '/yRsRRjGO.jpg',
   };
 
   return (
@@ -26,5 +37,5 @@ export default function FollowRecommend() {
         <button onClick={onFollow}>팔로우</button>
       </div>
     </div>
-  )
+  );
 }

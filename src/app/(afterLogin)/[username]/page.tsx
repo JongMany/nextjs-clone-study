@@ -2,7 +2,7 @@ import style from './profile.module.css';
 import Post from '@/app/(afterLogin)/_component/Post';
 import BackButton from '@/app/(afterLogin)/_component/BackButton';
 
-export default function Profile() {
+export default async function Profile() {
   const user = {
     id: 'zerohch0',
     nickname: '제로초',
