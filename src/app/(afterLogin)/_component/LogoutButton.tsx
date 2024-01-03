@@ -5,9 +5,9 @@ import { useRouter } from 'next/navigation';
 import style from './logoutButton.module.css';
 
 export default function LogoutButton() {
+  const router = useRouter();
   const { data: me } = useSession();
 
-  const router = useRouter();
   const onLogout = () => {
     signOut({ redirect: false })
       .then(() => {
