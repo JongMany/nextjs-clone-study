@@ -24,6 +24,7 @@ const onSubmit = async (
     return { message: 'no_image' };
   }
   let shouldRedirect = false;
+  formData.set('nickname', formData.get('name') as string);
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/users`,
