@@ -7,20 +7,37 @@ import {
   QueryClient,
   dehydrate,
 } from '@tanstack/react-query';
-import { getSinglePost } from './_lib/getSinglePost';
 import { getComments } from './_lib/getComments';
 import Comments from './_component/Comments';
+import { Metadata } from 'next';
+import { getUserServer } from '../../_lib/getUserServer';
+import { User } from '@/model/User';
+import { Post } from '@/model/Post';
+import { getSinglePostServer } from './_lib/getSinglePostServer';
 
 type Props = {
-  params: { id: string };
+  params: { id: string; username: string };
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const user: User = await getUserServer({
+    queryKey: ['users', params.username],
+  });
+  const post: Post = await getSinglePostServer({
+    queryKey: ['posts', params.id],
+  });
+  return {
+    title: `Z에서 ${user.nickname} 님 : ${post.content}`,
+    description: post.content,
+  };
+}
 
 export default async function Page({ params }: Props) {
   const { id } = params;
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
     queryKey: ['posts', id],
-    queryFn: getSinglePost,
+    queryFn: getSinglePostServer,
   });
   await queryClient.prefetchQuery({
     queryKey: ['posts', id, 'comments'],
@@ -37,7 +54,7 @@ export default async function Page({ params }: Props) {
           <h3 className={style.headerTitle}>게시하기</h3>
         </div>
         <SinglePost id={id} />
-        <CommentForm id={id}/>
+        <CommentForm id={id} />
         <div>
           <Comments id={id} />
         </div>

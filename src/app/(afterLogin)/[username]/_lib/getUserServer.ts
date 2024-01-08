@@ -1,8 +1,9 @@
-import { User } from '@/model/User';
-import { QueryFunction } from '@tanstack/react-query';
+import { cookies } from 'next/headers';
 
-export const getUser: QueryFunction<User, [_1: string, string]> = async ({
+export const getUserServer = async ({
   queryKey,
+}: {
+  queryKey: [string, string];
 }) => {
   const [_1, username] = queryKey;
   const res = await fetch(`http://localhost:9090/api/users/${username}`, {
@@ -11,7 +12,11 @@ export const getUser: QueryFunction<User, [_1: string, string]> = async ({
     },
     cache: 'no-store',
     credentials: 'include',
+    headers: {
+      Cookie: cookies().toString(),
+    },
   });
+  console.log(cookies().toString());
 
   if (!res.ok) {
     throw new Error('Failed to fetch data');

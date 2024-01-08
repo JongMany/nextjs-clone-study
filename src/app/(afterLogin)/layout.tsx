@@ -15,6 +15,7 @@ type Props = { children: ReactNode; modal: ReactNode };
 export default async function AfterLoginLayout({ children, modal }: Props) {
   const session = await auth();
   return (
+    <RQProvider>
     <div className={style.container}>
       <header className={style.leftSectionWrapper}>
         <section className={style.leftSection}>
@@ -50,7 +51,7 @@ export default async function AfterLoginLayout({ children, modal }: Props) {
           </div>
         </section>
       </header>
-      <RQProvider>
+      
         <div className={style.rightSectionWrapper}>
           <div className={style.rightSectionInner}>
             <main className={style.main}>{children}</main>
@@ -65,7 +66,7 @@ export default async function AfterLoginLayout({ children, modal }: Props) {
           </div>
         </div>
         {modal}
-      </RQProvider>
     </div>
+      </RQProvider>
   );
 }

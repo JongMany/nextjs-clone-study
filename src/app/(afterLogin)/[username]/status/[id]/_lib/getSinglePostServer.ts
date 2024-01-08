@@ -1,7 +1,8 @@
 import { Post } from '@/model/Post';
 import { QueryFunction } from '@tanstack/react-query';
+import { cookies } from 'next/headers';
 
-export const getSinglePost = async ({
+export const getSinglePostServer = async ({
   queryKey,
 }: {
   queryKey: [string, string];
@@ -12,6 +13,9 @@ export const getSinglePost = async ({
       tags: ['posts', id],
     },
     credentials: 'include',
+    headers: {
+      Cookie: cookies().toString(),
+    },
   });
 
   if (!res.ok) {
