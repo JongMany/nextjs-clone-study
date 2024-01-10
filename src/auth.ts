@@ -29,6 +29,8 @@ export const {
               }),
             }
           );
+          
+          // 서버의 쿠키를 받아서 브라우저에 쿠키를 심는 코드 (프론트 서버에 쿠키를 두면 개인정보 문제 발생)
           let setCookie = authResponse.headers.get('Set-Cookie');
           console.log('set-cookie', setCookie);
 

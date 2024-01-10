@@ -27,6 +27,7 @@ export default function LogoutButton({ me }: Props) {
           method: 'pst',
           credentials: 'include',
         });
+        router.refresh();
         router.replace('/');
       })
       .catch(console.error);

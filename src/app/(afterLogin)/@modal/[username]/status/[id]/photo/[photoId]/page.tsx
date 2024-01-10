@@ -39,7 +39,7 @@ export default async function PageModal({ params }: Props) {
         <ImageZone id={id} />
         <div className={style.commentZone}>
           <SinglePost id={id} noImage />
-          <CommentForm />
+          <CommentForm id={id} />
           <Comments id={id} />
         </div>
       </HydrationBoundary>
